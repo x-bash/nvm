@@ -2,16 +2,11 @@
 
 nvm() (
     local _nvm_path
-    _nvm_path="$(xrc which nvm/nvm-sh-v0.38.0/nvm.sh )"
-    # _nvm_path=./nvm-sh-v0.38.0/nvm.sh
-    . "$_nvm_path" --no-use
+    _nvm_path="$(xrc which nvm/nvm-sh-v0.38.0/nvm.sh)"
+    xrc which nvm/nvm-sh-v0.38.0/nvm-exec 2>/dev/null 1>&2 
 
-    # if [ -n "$NODE_VERSION" ]; then
-    #     nvm use "$NODE_VERSION" > /dev/null || exit 127
-    # elif ! nvm use >/dev/null 2>&1; then
-    #     echo "No NODE_VERSION provided; no .nvmrc file found" >&2
-    #     exit 127
-    # fi
+    NVM_DIR="$(dirname "$_nvm_path")"
+    . "$_nvm_path" --no-use
 
     nvm "$@"
 )
