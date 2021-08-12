@@ -1,12 +1,33 @@
 
 
-nvm() (
-    local _nvm_path
-    _nvm_path="$(xrc which nvm/nvm-sh-v0.38.0/nvm.sh)"
-    xrc which nvm/nvm-sh-v0.38.0/nvm-exec 2>/dev/null 1>&2 
+# nvm() {
+#     if [ -z "$NVM_DIR" ]; then
+#         NVM_DIR="$(
+#             local _nvm_path
+#             _nvm_path="$(xrc which nvm/nvm-sh-v0.38.0/nvm.sh)"
+#             chmod +x "$(xrc which nvm/nvm-sh-v0.38.0/nvm-exec)"
 
-    NVM_DIR="$(dirname "$_nvm_path")"
-    . "$_nvm_path" --no-use
+#             dirname "$_nvm_path"
+#         )"
+#     fi
 
-    nvm "$@"
-)
+#     . "$NVM_DIR/nvm.sh" --no-use
+#     nvm "$@"
+# }
+
+nvm() {
+    if [ -z "$NVM_DIR" ]; then
+        NVM_DIR="$(
+            local _nvm_path
+            _nvm_path="$(xrc which nvm/nvm-sh-v0.38.0/nvm.sh)"
+            chmod +x "$(xrc which nvm/nvm-sh-v0.38.0/nvm-exec)"
+
+            dirname "$_nvm_path"
+        )"
+    fi
+
+    (
+        . "$NVM_DIR/nvm.sh" --no-use
+        nvm "$@"
+    )
+}
