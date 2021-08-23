@@ -1,4 +1,4 @@
-
+# shellcheck shell=sh disable=SC3043
 
 nvm() {
     if [ -z "$NVM_DIR" ]; then
@@ -11,6 +11,7 @@ nvm() {
         )"
     fi
 
+    # TODO: --no-use not worked in dash. We should consider environment variable instead.
     . "$NVM_DIR/nvm.sh" --no-use
     nvm "$@"
 }
