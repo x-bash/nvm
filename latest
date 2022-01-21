@@ -1,9 +1,9 @@
-# shellcheck shell=sh
+# shellcheck shell=sh #xrc
 
 # author:       Li Junhao           l@x-cmd.com    edwinjhlee.github.io
 # maintainer:   Li Junhao
 
-nvm() {
+___x_cmd_nvm() {
     if [ -z "$NVM_DIR" ]; then
         NVM_DIR="$(
             local _nvm_path
@@ -19,7 +19,7 @@ nvm() {
     nvm "$@"
 }
 
-nvm1() {
+___x_cmd_nvm1() {
     if [ -z "$NVM_DIR" ]; then
         NVM_DIR="$(
             local _nvm_path
@@ -36,3 +36,4 @@ nvm1() {
     )
 }
 
+xrc setmain ___x_cmd_nvm
